@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: https://blog.hey3.dev
+Sitemap: https://blog.hey3.dev/sitemap.xml

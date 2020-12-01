@@ -1,0 +1,77 @@
+{
+  "name": "blog.hey3.dev",
+  "description": "Opinions and thoughts on web development and personal experiences.",
+  "version": "0.1.0",
+  "private": true,
+  "author": "hey3",
+  "keywords": [
+    "nextjs",
+    "typescript",
+    "blog",
+    "tech-blog"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hey3/blog.hey3.dev"
+  },
+  "bugs": {
+    "url": "https://github.com/hey3/blog.hey3.dev/issues"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:atom": "ts-node -O '{\"module\":\"commonjs\"}' ./src/lib/atom.ts",
+    "build:rss": "ts-node -O '{\"module\":\"commonjs\"}' ./src/lib/rss.ts",
+    "build:sitemap": "ts-node -O '{\"module\":\"commonjs\"}' ./src/lib/sitemap.ts",
+    "postbuild": "yarn build:rss && yarn build:atom && yarn build:sitemap",
+    "start": "next start",
+    "format": "prettier --check './src/**/*.{ts,tsx,json}'",
+    "format:fix": "prettier --write './src/**/*.{ts,tsx,json}'",
+    "lint": "eslint './src/**/*.{ts,tsx,json}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx,json}'",
+    "typecheck": "tsc --project tsconfig.json --pretty --noEmit"
+  },
+  "dependencies": {
+    "glob": "^7.1.6",
+    "github-slugger": "^1.3.0",
+    "gray-matter": "^4.0.2",
+    "next": "^10.0.3",
+    "next-pwa": "^3.1.5",
+    "next-seo": "^4.17.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "rehype-stringify": "^8.0.0",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.0.0",
+    "rehype-shiki": "^0.0.9",
+    "remark-slug": "^6.0.0",
+    "rss": "^1.2.2",
+    "sharp": "^0.26.3",
+    "unified": "^9.2.0",
+    "unist-util-visit": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/node": "^14.14.7",
+    "@types/react": "^16.9.56",
+    "@types/rss": "^0.0.28",
+    "@types/styled-components": "^5.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "babel-plugin-styled-components": "^1.11.1",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.1.2",
+    "rehype": "^11.0.0",
+    "styled-components": "^5.2.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}

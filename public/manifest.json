@@ -1,0 +1,26 @@
+{
+  "name": "hey3.dev",
+  "short_name": "hey3.dev",
+  "vercel": "https://blog.hey3.dev",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9f9",
+  "theme_color": "#fffbed",
+  "description": "Opinions and thoughts on web development and personal experiences.",
+  "lang": "ja-JP",
+  "icons": [
+    {
+      "src": "./author.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./site-feature.png",
+      "sizes": "1000x562",
+      "type": "image/png"
+    }
+  ]
+}

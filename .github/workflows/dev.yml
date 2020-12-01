@@ -1,0 +1,29 @@
+name: dev
+
+on:
+  pull_request:
+    branches: ['*', '!main']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: npm install
+        run: yarn
+      - name: run typecheck
+        run: yarn typecheck
+      - name: run eslint
+        run: yarn lint
+      - name: run prettier
+        run: yarn format

@@ -1,0 +1,27 @@
+name: lighthouse
+
+on:
+  schedule:
+    - cron: '23 23 * * 0'
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install lighthouse
+        run: sudo npm i -g lighthouse
+
+      - name: Run lighthouse
+        run: |
+          lighthouse \
+            --chrome-flags="--headless" \
+            --output html --output-path ./report.html \
+            'https://blog.hey3.dev'
+
+      - name: Upload result
+        uses: actions/upload-artifact@master
+        with:
+          name: report
+          path: report.html
