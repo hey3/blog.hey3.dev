@@ -24,7 +24,7 @@ ${posts
   .map(post => {
     return `<url>
     <loc>${siteMeta.siteUrl}/posts/${post.slug}</loc>
-    <lastmod>${post.update || post.create}</lastmod>
+    <lastmod>${new Date(post.update || post.create).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

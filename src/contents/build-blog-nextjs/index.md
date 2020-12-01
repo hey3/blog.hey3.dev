@@ -2,7 +2,7 @@
 title: 'Next.js + TypeScript でブログを作った'
 tag: next.js, typescript
 isProtect: false
-create: '2020-12-02T00:00'
+create: '2020-12-02T01:00:00+09:00'
 ---
 
 ブログを作成しました！  
