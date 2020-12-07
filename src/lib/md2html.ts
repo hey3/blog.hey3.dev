@@ -28,7 +28,7 @@ const md2html = async (markdown: string): Promise<string> => {
   return result.toString()
 }
 
-const escapeSymbolPattern = /\*|#|_|-|^1\. /g
+const escapeSymbolPattern = /\*|#|`|_|-|^1\. /g
 
 const postsDirectory = path.join(process.cwd(), 'src/contents')
 const postDirNamePattern = new RegExp(`${postsDirectory}/(.*?)/index.md`)
