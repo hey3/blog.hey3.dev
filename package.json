@@ -28,8 +28,8 @@
     "start": "next start",
     "format": "prettier --check './src/**/*.{ts,tsx,json}'",
     "format:fix": "prettier --write './src/**/*.{ts,tsx,json}'",
-    "lint": "eslint './src/**/*.{ts,tsx,json}'",
-    "lint:fix": "eslint --fix './src/**/*.{ts,tsx,json}'",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
     "typecheck": "tsc --project tsconfig.json --pretty --noEmit"
   },
   "dependencies": {

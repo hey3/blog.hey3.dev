@@ -3,6 +3,7 @@ title: 'Next.js + TypeScript でブログを作った'
 tag: next.js, typescript
 isProtect: false
 create: '2020-12-02T01:00:00+09:00'
+update: '2020-12-09T00:45:00+09:00'
 ---
 
 ブログを作成しました！  
@@ -245,8 +246,8 @@ v9.1 から `src` ディレクトリのサポートが入ったため、 ESLint,
   ...,
   "format": "prettier --check './src/**/*.{ts,tsx,json}'",
   "format:fix": "prettier --write './src/**/*.{ts,tsx,json}'",
-  "lint": "eslint './src/**/*.{ts,tsx,json}'",
-  "lint:fix": "eslint --fix './src/**/*.{ts,tsx,json}'",
+  "lint": "eslint './src/**/*.{ts,tsx}'",
+  "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
   "typecheck": "tsc --project tsconfig.json --pretty --noEmit"
 }
 ```
