@@ -3,6 +3,7 @@ title: 'Serverless Next.js Component が AWS に deploy するのに超便利だ
 tag: next.js, aws
 isProtect: false
 create: '2020-12-08T01:00:00+09:00'
+update: '2020-12-08T12:00:00+09:00'
 ---
 
 Next.js で作成したアプリケーションを AWS にデプロイする際に、 `Serverless Next.js Component` を使うと超絶楽ちんだったのでデプロイまでの手順を試す + α を記事にまとめます。
@@ -266,7 +267,7 @@ appUrl にアクセスするとちゃんとデプロイ出来ている事がわ�
 
 ![deployed-web-screen](/posts/deploy-nextjs-to-aws/deployed-web-screen.png)
 
-（SSR, SSG, ISR も問題なし）
+（SSR, SSG, CSR も問題なし）
 
 ### 作成されたリソース
 
