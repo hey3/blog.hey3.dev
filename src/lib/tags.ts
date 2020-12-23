@@ -25,13 +25,21 @@ const getTagsData = (): NavData => {
   const dirNames = getAllPostDirNames()
   const tags = getAllTagNames(dirNames)
 
-  return tags.reduce(
-    (acc, tag, index, tags) => ({
-      ...acc,
-      [tag]: tags.filter(x => x === tag).length,
-    }),
-    {}
-  )
+  return tags
+    .sort((a, b) => {
+      if (a > b) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+    .reduce(
+      (acc, tag, index, tags) => ({
+        ...acc,
+        [tag]: tags.filter(x => x === tag).length,
+      }),
+      {}
+    )
 }
 
 const getAllTagPaths = (): { params: { tag: string } }[] => {

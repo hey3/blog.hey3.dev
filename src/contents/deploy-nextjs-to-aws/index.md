@@ -1,6 +1,6 @@
 ---
 title: 'Serverless Next.js Component が AWS に deploy するのに超便利だった'
-tag: next.js, aws
+tag: nextjs, aws
 isProtect: false
 create: '2020-12-08T01:00:00+09:00'
 update: '2020-12-08T12:00:00+09:00'
