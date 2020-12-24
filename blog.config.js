@@ -13,4 +13,7 @@ module.exports = {
   github: {
     repository: 'https://github.com/hey3/blog.hey3.dev',
   },
+  other: {
+    gaPolicyUrl: 'https://policies.google.com/technologies/partner-sites?hl=ja',
+  },
 }

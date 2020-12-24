@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
-import { siteMeta, github } from '../../blog.config'
+import { siteMeta, github, other } from '../../blog.config'
 
 type ContainerProps = {
   className?: string
@@ -26,6 +26,12 @@ const DomComponent: FC<Props> = ({ className }) => (
         here(GitHub)
       </a>
     </p>
+    <p className="using-ga">
+      This site uses{' '}
+      <a href={other.gaPolicyUrl} target="_blank" rel="noopener noreferrer">
+        Google Analytics
+      </a>
+    </p>
   </footer>
 )
 
@@ -40,8 +46,9 @@ const StyledComponent = styled(DomComponent)`
   position: absolute;
   bottom: 0;
 
-  & .source {
-    margin-top: 1rem;
+  & .source,
+  .using-ga {
+    margin-top: 0.5rem;
   }
 
   & > p > a {
