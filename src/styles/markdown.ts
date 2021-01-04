@@ -59,29 +59,40 @@ const markDownStyle = css`
 
   ul {
     list-style-type: disc;
-    list-style-position: inside;
     margin-block-start: 1em;
     margin-block-end: 1em;
+    padding-left: 2rem;
   }
 
   ol {
     list-style-type: decimal;
-    list-style-position: inside;
     margin-block-start: 1em;
     margin-block-end: 1em;
+    padding-left: 2rem;
+
+    > li::marker {
+      unicode-bidi: isolate;
+      font-variant-numeric: tabular-nums;
+      text-transform: none;
+      text-indent: 0;
+      text-align: start;
+      text-align-last: start;
+    }
+  }
+
+  li + li {
+    margin-top: 0.25em;
   }
 
   ul ul,
   ol ul {
     list-style-type: circle;
-    list-style-position: inside;
     margin-left: 15px;
   }
 
   ol ol,
   ul ol {
     list-style-type: lower-latin;
-    list-style-position: inside;
     margin-left: 15px;
   }
 
@@ -109,6 +120,13 @@ const markDownStyle = css`
 
   code {
     color: #f8f9f9;
+  }
+
+  strong > code {
+    background-color: #eee;
+    color: #333;
+    padding: 0.1em 0.4em;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   }
 
   > ul > li > code {
