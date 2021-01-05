@@ -129,7 +129,8 @@ const markDownStyle = css`
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   }
 
-  > ul > li > code {
+  > ul > li > code,
+  > ol > li > code {
     background-color: #eee;
     color: #333;
     padding: 0.1em 0.4em;
