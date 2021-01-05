@@ -24,7 +24,7 @@ const StyledComponent = styled(DomComponent)`
   background-color: #f8f9f9;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 6rem; // footer's height
+  padding-bottom: 7rem; // footer's height
   box-sizing: border-box;
 
   & .main {

@@ -14,19 +14,22 @@ type Props = ContainerProps & PresenterProps
 
 const DomComponent: FC<Props> = ({ className }) => (
   <footer className={className}>
-    <p className="info">
-      © {new Date().getFullYear()}, {siteMeta.author}, Website built with{' '}
+    <p>
+      © 2020-{new Date().getFullYear()}, {siteMeta.author}
+    </p>
+    <p>
+      Website built with{' '}
       <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
         Next.js
       </a>
     </p>
-    <p className="source">
+    <p>
       Source code is{' '}
       <a href={github.repository} target="_blank" rel="noopener noreferrer">
         here(GitHub)
       </a>
     </p>
-    <p className="using-ga">
+    <p>
       This site uses{' '}
       <a href={other.gaPolicyUrl} target="_blank" rel="noopener noreferrer">
         Google Analytics
@@ -42,12 +45,11 @@ const StyledComponent = styled(DomComponent)`
   justify-content: center;
   background-color: #fffbed;
   width: 100%;
-  height: 6rem;
+  height: 7rem;
   position: absolute;
   bottom: 0;
 
-  & .source,
-  .using-ga {
+  & > p:not(:first-child) {
     margin-top: 0.5rem;
   }
 
