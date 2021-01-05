@@ -194,6 +194,7 @@ const StyledComponent = styled(DomComponent)`
         padding: 1rem;
         border-radius: 0.3rem;
         margin: 0.5rem;
+        overflow-x: auto;
 
         @media screen and (max-width: 468px) {
           font-size: 0.9rem;
