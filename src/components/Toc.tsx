@@ -28,7 +28,7 @@ const DomComponent: FC<Props> = ({ className, toc, slug }) => (
 )
 
 const HeadLink = styled.li<{ depth: number }>`
-  padding-left: ${props => props.depth * 0.7}rem;
+  padding-left: calc(${props => props.depth * 1}rem - 1rem);
 
   & > a {
     display: block;

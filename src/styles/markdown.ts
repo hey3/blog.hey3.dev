@@ -99,7 +99,7 @@ const markDownStyle = css`
   blockquote {
     border-left: 5px solid #ddd;
     color: #595959;
-    padding: 1em 0 1em 1em;
+    padding: 0.5em 0 0.5em 1em;
     margin: 1.5em 0;
   }
 
@@ -118,32 +118,28 @@ const markDownStyle = css`
     }
   }
 
+  // default code tag color
   code {
     color: #f8f9f9;
   }
 
-  strong > code {
-    background-color: #eee;
-    color: #333;
-    padding: 0.1em 0.4em;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-  }
-
-  > ul > li > code,
-  > ol > li > code {
-    background-color: #eee;
-    color: #333;
-    padding: 0.1em 0.4em;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  > ul,
+  > ol {
+    code {
+      background-color: #eee;
+      color: #333;
+      padding: 0.1em 0.4em;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    }
   }
 
   > p {
-    margin-block-start: 1em;
-    margin-block-end: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     color: #2c2c2c;
     word-break: break-word;
 
-    > code {
+    code {
       background-color: #eee;
       color: #333;
       padding: 0.1em 0.4em;
