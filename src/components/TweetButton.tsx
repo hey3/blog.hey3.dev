@@ -64,6 +64,7 @@ const StyledComponent = styled(DomComponent)`
   & .icon {
     display: block;
     height: 40%;
+    width: 0.75rem;
   }
 
   & .word {

@@ -101,13 +101,16 @@ const StyledComponent = styled(DomComponent)`
 
   & .post {
     background-color: #fff;
-    width: 55em;
+    max-width: 45%;
     margin-top: 1rem;
-    margin-left: auto;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 1rem;
     overflow: hidden;
+
+    @media screen and (max-width: 468px) {
+      max-width: unset;
+    }
 
     & .post-header {
       & .title {
@@ -209,7 +212,8 @@ const StyledComponent = styled(DomComponent)`
     max-width: 25em;
     margin-top: 10rem;
     margin-left: 5rem;
-    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
     visibility: ${props => props.postData.toc.length === 0 && 'hidden'};
 
     @media screen and (max-width: 468px) {

@@ -37,18 +37,18 @@ const HeadLink = styled.li<{ depth: number }>`
 `
 
 const StyledComponent = styled(DomComponent)`
-  color: #595959;
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  width: fit-content;
-  height: fit-content;
-  line-height: 1.5rem;
+  & > ul {
+    color: #595959;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    line-height: 1.5rem;
 
-  & .head:hover {
-    background-color: #fffbf0;
-    cursor: pointer;
-    color: #444;
+    & .head:hover {
+      background-color: #fffbf0;
+      cursor: pointer;
+      color: #444;
+    }
   }
 `
 
