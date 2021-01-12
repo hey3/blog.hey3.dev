@@ -13,11 +13,19 @@ import Toc from '../components/Toc'
 import Avatar from '../components/Avatar'
 import Date from '../components/Date'
 import TweetButton from '../components/TweetButton'
+import PostLinkButton from '../components/PostLinkButton'
+
+export type LinkPostData = {
+  title: string
+  slug: string
+} | null
 
 type ContainerProps = {
   className?: string
   path: string
   postData: PostData
+  prevPostData: LinkPostData
+  nextPostData: LinkPostData
   children?: never
 }
 
@@ -29,6 +37,8 @@ const DomComponent: FC<Props> = ({
   className,
   path,
   postData: { title, tags, toc, excerpt, slug, create, update, isProtect, contentHtml },
+  prevPostData,
+  nextPostData,
 }) => (
   <Layout>
     <Seo
@@ -41,54 +51,72 @@ const DomComponent: FC<Props> = ({
       isProtect={isProtect}
     />
     <div className={className}>
-      <article className="post">
-        <div className="post-header">
-          <h1 className="title">{title}</h1>
-          <div className="detail">
-            <div className="info">
-              <Date className="date" date={create} />
-              <ul className="tag-panel">
-                {tags.map(tag => (
-                  <li key={tag} className="tag">
-                    <Link href={routes.tags(tag)} passHref>
-                      <a>
-                        <div>{tag}</div>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="user-row">
-            <div className="user">
-              <Avatar imageSource={siteMeta.authorImage} alt="author" />
-              <div className="user-info">
-                <a
-                  className="author-name"
-                  href={twitter.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {siteMeta.author}
-                </a>
+      <article className="post-area">
+        <div className="post">
+          <div className="post-header">
+            <h1 className="title">{title}</h1>
+            <div className="detail">
+              <div className="info">
+                <Date className="date" date={create} />
+                <ul className="tag-panel">
+                  {tags.map(tag => (
+                    <li key={tag} className="tag">
+                      <Link href={routes.tags(tag)} passHref>
+                        <a>
+                          <div>{tag}</div>
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-            <TweetButton className="twitter-share-button" title={title} path={path} />
+            <div className="user-row">
+              <div className="user">
+                <Avatar imageSource={siteMeta.authorImage} alt="author" />
+                <div className="user-info">
+                  <a
+                    className="author-name"
+                    href={twitter.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {siteMeta.author}
+                  </a>
+                </div>
+              </div>
+              <TweetButton className="twitter-share-button" title={title} path={path} />
+            </div>
           </div>
+          <div className="image-wrapper">
+            <Image
+              src={routes.postVisualImage(slug)}
+              alt={title}
+              layout="fill"
+              loading="lazy"
+              quality={100}
+              objectFit="cover"
+              objectPosition="center center"
+            />
+          </div>
+          <section className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </div>
-        <div className="image-wrapper">
-          <Image
-            src={routes.postVisualImage(slug)}
-            alt={title}
-            layout="fill"
-            loading="lazy"
-            quality={100}
-            objectFit="cover"
-            objectPosition="center center"
-          />
-        </div>
-        <section className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <section className="link-area">
+          {prevPostData ? (
+            <PostLinkButton
+              position="Previous"
+              title={prevPostData.title}
+              slug={prevPostData.slug}
+            />
+          ) : (
+            <div />
+          )}
+          {nextPostData ? (
+            <PostLinkButton position="Next" title={nextPostData.title} slug={nextPostData.slug} />
+          ) : (
+            <div />
+          )}
+        </section>
       </article>
       <Toc className="tocs" toc={toc} slug={slug} />
     </div>
@@ -99,109 +127,125 @@ const StyledComponent = styled(DomComponent)`
   display: flex;
   justify-content: center;
 
-  & .post {
-    background-color: #fff;
+  & .post-area {
     max-width: 45%;
+    min-width: 55rem;
     margin-top: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-bottom: 1rem;
     overflow: hidden;
 
     @media screen and (max-width: 468px) {
       max-width: unset;
+      min-width: unset;
     }
 
-    & .post-header {
-      & .title {
-        color: #2c2c2c;
-        font-size: 2rem;
-        font-weight: 700;
-        padding-top: 1.5rem;
-      }
+    & .post {
+      background-color: #fff;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 1rem;
 
-      & .detail {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 1rem;
+      & .post-header {
+        & .title {
+          color: #2c2c2c;
+          font-size: 2rem;
+          font-weight: 700;
+          padding-top: 1.5rem;
+        }
 
-        & .info {
-          & .date {
-            padding: 0.5rem 0;
-          }
+        & .detail {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 1rem;
 
-          & .tag-panel {
-            & .tag {
-              display: inline-block;
-              background-color: #0054ad;
-              color: #ffffff;
-              width: fit-content;
-              height: 1.5rem;
-              margin: 0.5rem 0;
-              padding: 0.1rem 0.5rem;
-              border-radius: 0.2rem;
-              cursor: pointer;
+          & .info {
+            & .date {
+              padding: 0.5rem 0;
+            }
 
-              &:nth-child(n + 2) {
-                margin-left: 0.5rem;
+            & .tag-panel {
+              & .tag {
+                display: inline-block;
+                background-color: #0054ad;
+                color: #ffffff;
+                width: fit-content;
+                height: 1.5rem;
+                margin: 0.5rem 0;
+                padding: 0.1rem 0.5rem;
+                border-radius: 0.2rem;
+                cursor: pointer;
+
+                &:nth-child(n + 2) {
+                  margin-left: 0.5rem;
+                }
               }
             }
           }
         }
-      }
-      & .user-row {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        margin: 0.5rem 0;
 
-        & .user {
+        & .user-row {
           display: flex;
-          align-items: center;
+          flex-direction: column;
+          align-items: flex-end;
+          margin: 0.5rem 0;
 
-          & .user-info {
+          & .user {
             display: flex;
-            flex-direction: column;
-            margin-left: 0.7rem;
-            font-weight: 700;
+            align-items: center;
 
-            & .author-name {
-              text-decoration: underline;
+            & .user-info {
+              display: flex;
+              flex-direction: column;
+              margin-left: 0.7rem;
+              font-weight: 700;
+
+              & .author-name {
+                text-decoration: underline;
+              }
             }
           }
-        }
 
-        & .twitter-share-button {
-          margin-top: 0.5rem;
+          & .twitter-share-button {
+            margin-top: 0.5rem;
+          }
         }
       }
-    }
 
-    & .image-wrapper {
-      position: relative;
-      min-height: 35rem;
-
-      @media screen and (max-width: 468px) {
-        min-height: 15rem;
-      }
-    }
-
-    & .content {
-      ${markDownStyle};
-      margin-top: 1rem;
-      line-height: 1.5;
-      font-weight: 400;
-
-      > pre {
-        white-space: pre-wrap;
-        padding: 1rem;
-        border-radius: 0.3rem;
-        margin: 0.5rem;
-        overflow-x: auto;
+      & .image-wrapper {
+        position: relative;
+        min-height: 50vh;
 
         @media screen and (max-width: 468px) {
-          font-size: 0.9rem;
+          min-height: 15rem;
         }
+      }
+
+      & .content {
+        ${markDownStyle};
+        margin-top: 1rem;
+        line-height: 1.5;
+        font-weight: 400;
+
+        > pre {
+          white-space: pre-wrap;
+          padding: 1rem;
+          border-radius: 0.3rem;
+          margin: 0.5rem;
+          overflow-x: auto;
+
+          @media screen and (max-width: 468px) {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+
+    & .link-area {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+
+      & > a {
+        width: 50%;
       }
     }
   }
