@@ -43,21 +43,17 @@ const DomComponent: FC<Props> = ({
   >
     <Link href={routes.posts(slug)}>
       <a className="wrapper">
-        <div className="image-wrapper">
-          <picture>
-            <Image
-              className="visual"
-              src={visual}
-              alt={visual}
-              title={title}
-              loading="lazy"
-              layout="fill"
-              quality={100}
-              objectFit="cover"
-              objectPosition="center center"
-            />
-          </picture>
-        </div>
+        <Image
+          className="visual"
+          src={visual}
+          alt={visual}
+          title={title}
+          layout="responsive"
+          width={72}
+          height={50}
+          quality={100}
+          loading="lazy"
+        />
         <section className="description">
           <h1 className="title">{title}</h1>
           <Date className="date" date={date} />
@@ -95,27 +91,35 @@ const StyledComponent = styled(DomComponent)`
     width: 100%;
     max-width: 70rem;
 
-    & .image-wrapper {
-      flex: 0.3;
-      position: relative;
-      min-height: 11rem;
+    @media screen and (max-width: 480px) {
+      flex-direction: column;
+      min-width: auto;
+    }
 
-      & .visual {
-        transition: 0.5s all;
+    // next/image のレスポンシブ対応による div に対して適用
+    > div:first-child {
+      flex: 30%;
+    }
 
-        ${({ isHover }) =>
-          isHover &&
-          css`
-            transform: scale(1.1, 1.1);
-          `};
-      }
+    & .visual {
+      transition: 0.5s all;
+
+      ${({ isHover }) =>
+        isHover &&
+        css`
+          transform: scale(1.1, 1.1);
+        `};
     }
 
     & .description {
-      flex: 0.7;
+      flex: 70%;
       display: flex;
       flex-direction: column;
       margin: 0 0 0 1rem;
+
+      @media screen and (max-width: 480px) {
+        margin: 1rem 0 0 0;
+      }
 
       & .title {
         font-size: 1.2rem;
@@ -148,15 +152,6 @@ const StyledComponent = styled(DomComponent)`
         color: #595959;
         line-height: 1.5rem;
       }
-
-      @media screen and (max-width: 468px) {
-        margin: 1rem 0 0 0;
-      }
-    }
-
-    @media screen and (max-width: 468px) {
-      flex-direction: column;
-      min-width: auto;
     }
   }
 `

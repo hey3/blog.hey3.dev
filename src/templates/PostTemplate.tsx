@@ -88,17 +88,15 @@ const DomComponent: FC<Props> = ({
               <TweetButton className="twitter-share-button" title={title} path={path} />
             </div>
           </div>
-          <div className="image-wrapper">
-            <Image
-              src={routes.postVisualImage(slug)}
-              alt={title}
-              layout="fill"
-              loading="lazy"
-              quality={100}
-              objectFit="cover"
-              objectPosition="center center"
-            />
-          </div>
+          <Image
+            src={routes.postVisualImage(slug)}
+            alt={title}
+            layout="responsive"
+            width={720}
+            height={500}
+            quality={100}
+            loading="lazy"
+          />
           <section className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </div>
         <section className="link-area">
@@ -128,14 +126,11 @@ const StyledComponent = styled(DomComponent)`
   justify-content: center;
 
   & .post-area {
-    max-width: 45%;
-    min-width: 55rem;
     margin-top: 1rem;
     overflow: hidden;
 
-    @media screen and (max-width: 468px) {
-      max-width: unset;
-      min-width: unset;
+    @media screen and (min-width: 1025px) {
+      max-width: 50rem;
     }
 
     & .post {
@@ -210,20 +205,16 @@ const StyledComponent = styled(DomComponent)`
         }
       }
 
-      & .image-wrapper {
-        position: relative;
-        min-height: 50vh;
-
-        @media screen and (max-width: 468px) {
-          min-height: 15rem;
-        }
-      }
-
       & .content {
         ${markDownStyle};
         margin-top: 1rem;
         line-height: 1.5;
         font-weight: 400;
+
+        @media screen and (max-width: 1024px) {
+          margin: 0 auto;
+          width: 90%;
+        }
 
         > pre {
           white-space: pre-wrap;
@@ -232,7 +223,7 @@ const StyledComponent = styled(DomComponent)`
           margin: 0.5rem;
           overflow-x: auto;
 
-          @media screen and (max-width: 468px) {
+          @media screen and (max-width: 1024px) {
             font-size: 0.9rem;
           }
         }
@@ -260,7 +251,7 @@ const StyledComponent = styled(DomComponent)`
     height: fit-content;
     visibility: ${props => props.postData.toc.length === 0 && 'hidden'};
 
-    @media screen and (max-width: 468px) {
+    @media screen and (max-width: 1024px) {
       display: none;
     }
   }

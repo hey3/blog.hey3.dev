@@ -64,9 +64,16 @@ const StyledComponent = styled(DomComponent)`
   justify-content: center;
   margin: 3rem 5rem 0 5rem;
 
+  @media screen and (max-width: 1024px) {
+    margin: 1rem;
+  }
+
   .content-area {
     flex: 0.75;
-    max-width: 70rem;
+
+    @media screen and (max-width: 1024px) {
+      flex: 1;
+    }
 
     & .page-subject {
       margin-bottom: 1.5rem;
@@ -82,23 +89,15 @@ const StyledComponent = styled(DomComponent)`
         margin-bottom: 2rem;
       }
     }
-
-    @media screen and (max-width: 768px) {
-      flex: 1;
-    }
   }
 
   .nav {
     flex: 0.25;
     margin-left: 3rem;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       display: none;
     }
-  }
-
-  @media screen and (max-width: 768px) {
-    margin: 1rem;
   }
 `
 
