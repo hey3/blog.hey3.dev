@@ -7,6 +7,7 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import Nav from '../components/Nav'
 import Card from '../components/Card'
+import NewsDrawer from '../components/NewsDrawer'
 
 type ContainerProps = {
   className?: string
@@ -56,6 +57,7 @@ const DomComponent: FC<Props> = ({
         <Nav name="Tags" items={allTagsData} />
       </nav>
     </div>
+    <NewsDrawer tags={allTagsData} />
   </Layout>
 )
 

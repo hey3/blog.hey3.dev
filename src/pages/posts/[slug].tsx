@@ -9,21 +9,24 @@ import {
   PostData,
   PostOverView,
 } from '../../lib/posts'
+import { getTagsData, NavData } from '../../lib/tags'
 import PostTemplate, { LinkPostData } from '../../templates/PostTemplate'
 
 type Props = {
   postData: PostData
   prevPostData: LinkPostData
   nextPostData: LinkPostData
+  allTagsData: NavData
   children?: never
 }
 
-const Post: FC<Props> = ({ postData, prevPostData, nextPostData }) => (
+const Post: FC<Props> = ({ postData, prevPostData, nextPostData, allTagsData }) => (
   <PostTemplate
     path={routes.posts(postData.slug)}
     postData={postData}
     prevPostData={prevPostData}
     nextPostData={nextPostData}
+    allTagsData={allTagsData}
   />
 )
 
@@ -37,7 +40,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const postData = await getPostData(params?.slug as string)
-  const allPosts = await getSortedPostsOverView()
+  const allTagsData = getTagsData()
+  const allPosts = getSortedPostsOverView()
   const currentPostIndex = allPosts.map(({ slug }) => slug).indexOf(params?.slug as string)
   const prevPost: PostOverView | undefined = allPosts[currentPostIndex + 1]
   const nextPost: PostOverView | undefined = allPosts[currentPostIndex - 1]
@@ -58,6 +62,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       postData,
+      allTagsData,
       prevPostData,
       nextPostData,
     },

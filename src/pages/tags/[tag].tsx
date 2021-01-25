@@ -28,6 +28,7 @@ const Tag: FC<Props> = ({ title, tagId, filteredPostData, allTagsData }) => (
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllTagPaths()
+
   return {
     paths,
     fallback: false,
@@ -39,6 +40,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const title = `${tag} | ${siteMeta.title}`
   const filteredPostData = await getFilteredPostData(tag)
   const allTagsData = getTagsData()
+
   return {
     props: {
       title,

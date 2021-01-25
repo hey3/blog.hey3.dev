@@ -7,6 +7,7 @@ import { siteMeta, twitter } from '../../blog.config'
 import { routes } from '../routes'
 import { markDownStyle } from '../styles/markdown'
 import { PostData } from '../lib/posts'
+import { NavData } from '../lib/tags'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import Toc from '../components/Toc'
@@ -14,6 +15,7 @@ import Avatar from '../components/Avatar'
 import Date from '../components/Date'
 import TweetButton from '../components/TweetButton'
 import PostLinkButton from '../components/PostLinkButton'
+import PostDrawer from '../components/PostDrawer'
 
 export type LinkPostData = {
   title: string
@@ -26,6 +28,7 @@ type ContainerProps = {
   postData: PostData
   prevPostData: LinkPostData
   nextPostData: LinkPostData
+  allTagsData: NavData
   children?: never
 }
 
@@ -39,6 +42,7 @@ const DomComponent: FC<Props> = ({
   postData: { title, tags, toc, excerpt, slug, create, update, isProtect, contentHtml },
   prevPostData,
   nextPostData,
+  allTagsData,
 }) => (
   <Layout>
     <Seo
@@ -118,6 +122,7 @@ const DomComponent: FC<Props> = ({
       </article>
       <Toc className="tocs" toc={toc} slug={slug} />
     </div>
+    <PostDrawer toc={toc} slug={slug} tags={allTagsData} />
   </Layout>
 )
 

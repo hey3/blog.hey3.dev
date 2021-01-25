@@ -27,6 +27,7 @@ const Home: FC<Props> = ({ allPostsData, allTagsData }) => (
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsOverView()
   const allTagsData = getTagsData()
+
   return {
     props: {
       allPostsData,
