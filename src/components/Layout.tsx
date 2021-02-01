@@ -15,7 +15,9 @@ type Props = ContainerProps & PresenterProps
 const DomComponent: FC<Props> = ({ className, children }) => (
   <div className={className}>
     <Header className="header" />
-    <main className="main">{children}</main>
+    <main className="main" role="main">
+      {children}
+    </main>
     <Footer className="footer" />
   </div>
 )

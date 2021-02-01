@@ -49,6 +49,7 @@ class CustomDocument extends NextDocument {
         <Head>
           <meta name="theme-color" content="#fffbed" />
           <link rel="icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="manifest" crossOrigin="use-credentials" href="/manifest.json" />
           <link rel="alternate" type="application/rss+xml" title={siteMeta.title} href="/rss.xml" />
           <link

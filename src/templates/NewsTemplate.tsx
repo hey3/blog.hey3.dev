@@ -5,7 +5,7 @@ import { PostOverView } from '../lib/posts'
 import { NavData } from '../lib/tags'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import Nav from '../components/Nav'
+import Tags from '../components/Tags'
 import Card from '../components/Card'
 import NewsDrawer from '../components/NewsDrawer'
 
@@ -37,7 +37,9 @@ const DomComponent: FC<Props> = ({
     <Seo path={path} title={title} description={description} />
     <div className={className}>
       <div className="content-area">
-        <h1 className="page-subject">{pageSubject}</h1>
+        <h1 className="page-subject" aria-label="記事一覧">
+          {pageSubject}
+        </h1>
         <ul className="posts">
           {postsData.map(({ slug, create, title, visualPath, tags, excerpt }) => (
             <li className="post" key={slug}>
@@ -54,7 +56,7 @@ const DomComponent: FC<Props> = ({
         </ul>
       </div>
       <nav className="nav">
-        <Nav name="Tags" items={allTagsData} />
+        <Tags items={allTagsData} />
       </nav>
     </div>
     <NewsDrawer tags={allTagsData} />

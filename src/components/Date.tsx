@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styled from 'styled-components'
 
 type ContainerProps = {
@@ -30,4 +30,4 @@ const Date: FC<ContainerProps> = props => {
   return <StyledComponent {...presenterProps} {...props} />
 }
 
-export default Date
+export default memo(Date)

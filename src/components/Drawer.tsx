@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { Dispatch, FC, MutableRefObject, SetStateAction, useRef } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import DrawerButton from './DrawerButton'
@@ -12,7 +12,10 @@ type ContainerProps = {
 
 type PresenterProps = {
   handleClickButton: () => void
-  handleAnimationEnd: () => void
+  handleBGAnimationEnd: () => void
+  handleNavAnimationEnd: () => void
+  bgRef: MutableRefObject<HTMLDivElement | null>
+  navRef: MutableRefObject<HTMLElement | null>
 }
 
 type Props = ContainerProps & PresenterProps
@@ -22,7 +25,10 @@ const DomComponent: FC<Props> = ({
   isOpen,
   setIsOpen,
   handleClickButton,
-  handleAnimationEnd,
+  handleBGAnimationEnd,
+  handleNavAnimationEnd,
+  bgRef,
+  navRef,
   children,
 }) => (
   <div className={className}>
@@ -31,12 +37,15 @@ const DomComponent: FC<Props> = ({
       id="drawer-bg"
       role="button"
       tabIndex={0}
+      ref={bgRef}
       onKeyDown={() => setIsOpen(false)}
       onClick={() => setIsOpen(false)}
-      onAnimationEnd={handleAnimationEnd}
+      onAnimationEnd={handleBGAnimationEnd}
     />
     <DrawerButton className="drawer-button" isOpen={isOpen} handleClick={handleClickButton} />
-    <DrawerNav isOpen={isOpen}>{children}</DrawerNav>
+    <DrawerNav navRef={navRef} onAnimationEnd={handleNavAnimationEnd} isOpen={isOpen}>
+      {children}
+    </DrawerNav>
   </div>
 )
 
@@ -66,38 +75,50 @@ const StyledComponent = styled(DomComponent)`
   }
 
   & > .drawer-bg {
+    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
     width: 100%;
     height: 100%;
     position: fixed;
-    z-index: 1;
-    background-color: rgba(51, 51, 51, 0.5);
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-    animation: 0.5s ${({ isOpen }) => (isOpen ? fadeIn : fadeOut)} linear;
     top: 0;
     left: 0;
+    background-color: rgba(51, 51, 51, 0.5);
+    animation: 0.2s ${({ isOpen }) => (isOpen ? fadeIn : fadeOut)} linear;
+    z-index: 1;
   }
 `
 
 const Drawer: FC<ContainerProps> = props => {
   const { isOpen, setIsOpen } = props
+  const bgRef = useRef<HTMLDivElement | null>(null)
+  const navRef = useRef<HTMLElement | null>(null)
 
   const handleClickButton = (): void => {
     setIsOpen(!isOpen)
-    const bgElement = document.getElementById('drawer-bg')
-    if (bgElement) {
-      bgElement.style.display = 'block'
+    if (navRef.current) {
+      navRef.current.style.display = 'block'
+    }
+    if (bgRef.current) {
+      bgRef.current.style.display = 'block'
     }
   }
-  const handleAnimationEnd = (): void => {
-    const bgElement = document.getElementById('drawer-bg')
-    if (bgElement) {
-      isOpen ? (bgElement.style.display = 'block') : (bgElement.style.display = 'none')
+  const handleBGAnimationEnd = (): void => {
+    if (bgRef.current) {
+      isOpen ? (bgRef.current.style.display = 'block') : (bgRef.current.style.display = 'none')
+    }
+  }
+
+  const handleNavAnimationEnd = (): void => {
+    if (navRef.current) {
+      isOpen ? (navRef.current.style.display = 'block') : (navRef.current.style.display = 'none')
     }
   }
 
   const presenterProps: PresenterProps = {
     handleClickButton,
-    handleAnimationEnd,
+    handleBGAnimationEnd,
+    handleNavAnimationEnd,
+    bgRef,
+    navRef,
   }
 
   return <StyledComponent {...presenterProps} {...props} />

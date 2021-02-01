@@ -22,6 +22,7 @@ const DomComponent: FC<Props> = ({ className, title, path }) => (
     }${path}&related=${encodeURIComponent(siteMeta.author)}`}
     target="_blank"
     rel="noopener noreferrer"
+    aria-label="この記事をツイートする"
   >
     <svg className="icon" viewBox="328 355 335 276" fill="#ffffff">
       <path

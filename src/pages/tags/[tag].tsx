@@ -37,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tag = params?.tag as string
-  const title = `${tag} | ${siteMeta.title}`
+  const title = `${tag}についての記事 - ${siteMeta.title}`
   const filteredPostData = await getFilteredPostData(tag)
   const allTagsData = getTagsData()
 

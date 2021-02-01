@@ -34,7 +34,7 @@ const DomComponent: FC<Props> = ({
   excerpt,
   setIsHover,
 }) => (
-  <article
+  <div
     className={className}
     onFocus={() => setIsHover(true)}
     onBlur={() => setIsHover(false)}
@@ -42,11 +42,11 @@ const DomComponent: FC<Props> = ({
     onMouseLeave={() => setIsHover(false)}
   >
     <Link href={routes.posts(slug)}>
-      <a className="wrapper">
+      <a className="wrapper" aria-label={title}>
         <Image
           className="visual"
           src={visual}
-          alt={visual}
+          alt={title}
           title={title}
           layout="responsive"
           width={72}
@@ -55,9 +55,9 @@ const DomComponent: FC<Props> = ({
           loading="lazy"
         />
         <section className="description">
-          <h1 className="title">{title}</h1>
+          <h2 className="title">{title}</h2>
           <Date className="date" date={date} />
-          <ul className="tag-panel">
+          <ul className="tag-panel" aria-label="この記事のタグ">
             {tags.map(tag => (
               <li key={tag} className="tag">
                 {tag}
@@ -68,7 +68,7 @@ const DomComponent: FC<Props> = ({
         </section>
       </a>
     </Link>
-  </article>
+  </div>
 )
 
 const StyledComponent = styled(DomComponent)`

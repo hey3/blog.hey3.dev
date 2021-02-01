@@ -9,8 +9,7 @@ type ContainerProps = {
   viewWidth: number
   viewHeight: number
   color: string
-  iconAriaLabel?: string
-  buttonAriaLabel?: string
+  ariaLabel?: string
   children: SVGProps<SVGElement> | SVGProps<SVGElement>[]
 }
 
@@ -20,8 +19,7 @@ type Props = ContainerProps & PresenterProps
 
 const DomComponent: FC<Props> = ({
   className,
-  iconAriaLabel,
-  buttonAriaLabel,
+  ariaLabel,
   href,
   viewWidth,
   viewHeight,
@@ -31,11 +29,12 @@ const DomComponent: FC<Props> = ({
   <a
     className={className}
     href={href}
-    aria-label={iconAriaLabel}
+    role="button"
+    aria-label={ariaLabel}
     target="_blank"
     rel="noopener noreferrer"
   >
-    <button className="button" aria-label={buttonAriaLabel}>
+    <div className="button">
       <svg
         className="image"
         viewBox={`0 0 ${viewWidth} ${viewHeight}`}
@@ -45,7 +44,7 @@ const DomComponent: FC<Props> = ({
       >
         {children}
       </svg>
-    </button>
+    </div>
   </a>
 )
 

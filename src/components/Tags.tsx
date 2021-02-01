@@ -7,7 +7,6 @@ import { NavData } from '../lib/tags'
 
 type ContainerProps = {
   className?: string
-  name: string
   items: NavData
   children?: never
 }
@@ -16,19 +15,21 @@ type PresenterProps = Record<string, unknown>
 
 type Props = ContainerProps & PresenterProps
 
-const DomComponent: FC<Props> = ({ className, name, items }) => (
+const DomComponent: FC<Props> = ({ className, items }) => (
   <div className={className}>
-    <h2 className="heading">{name}</h2>
-    <ul className="nav-list">
+    <h1 className="title">Tags</h1>
+    <ul className="tag-list">
       <li>
         <Link href={routes.top}>
-          <a className="item-link">All</a>
+          <a className="tag-link" aria-label="すべてのタグを含む記事一覧ページ">
+            All
+          </a>
         </Link>
       </li>
       {Object.entries(items).map(([name, count]) => (
         <li key={name}>
           <Link href={routes.tags(name)}>
-            <a className="item-link">
+            <a className="tag-link" aria-label={`${name}タグの記事一覧ページ`}>
               {name}: ({count})
             </a>
           </Link>
@@ -39,12 +40,12 @@ const DomComponent: FC<Props> = ({ className, name, items }) => (
 )
 
 const StyledComponent = styled(DomComponent)`
-  & .heading {
+  & .title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
 
-  & .nav-list {
+  & .tag-list {
     & > li {
       border-bottom: 1px solid #ecebeb;
       padding: 0.5rem 0;
@@ -70,8 +71,8 @@ const StyledComponent = styled(DomComponent)`
   }
 `
 
-const Nav: FC<ContainerProps> = props => {
+const Tags: FC<ContainerProps> = props => {
   return <StyledComponent {...props} />
 }
 
-export default Nav
+export default Tags

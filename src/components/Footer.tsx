@@ -13,25 +13,40 @@ type PresenterProps = Record<string, unknown>
 type Props = ContainerProps & PresenterProps
 
 const DomComponent: FC<Props> = ({ className }) => (
-  <footer className={className}>
+  <footer className={className} role="contentinfo">
     <p>
       © 2020-{new Date().getFullYear()}, {siteMeta.author}
     </p>
     <p>
       Website built with{' '}
-      <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://nextjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Next.jsの公式サイト"
+      >
         Next.js
       </a>
     </p>
     <p>
       Source code is{' '}
-      <a href={github.repository} target="_blank" rel="noopener noreferrer">
+      <a
+        href={github.repository}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="このブログのソースコードのリポジトリ"
+      >
         here(GitHub)
       </a>
     </p>
     <p>
       This site uses{' '}
-      <a href={other.gaPolicyUrl} target="_blank" rel="noopener noreferrer">
+      <a
+        href={other.gaPolicyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Google Analyticsのポリシーと規約"
+      >
         Google Analytics
       </a>
     </p>

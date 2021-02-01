@@ -11,6 +11,7 @@ const tags = Object.keys(tagsData)
 
 const sitemap = `<?xml version="1.0"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
@@ -26,7 +27,7 @@ ${posts
     <loc>${siteMeta.siteUrl}/posts/${post.slug}</loc>
     <lastmod>${new Date(post.update || post.create).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
   </url>
   `
   })
