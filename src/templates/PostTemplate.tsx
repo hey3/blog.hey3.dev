@@ -39,7 +39,7 @@ type Props = ContainerProps & PresenterProps
 const DomComponent: FC<Props> = ({
   className,
   path,
-  postData: { title, tags, toc, excerpt, slug, create, update, isProtect, contentHtml },
+  postData: { title, tags, toc, excerpt, slug, create, isProtect, contentHtml },
   prevPostData,
   nextPostData,
   allTagsData,
@@ -50,8 +50,6 @@ const DomComponent: FC<Props> = ({
       title={title}
       description={excerpt}
       image={routes.postVisualImage(slug)}
-      datePublished={create}
-      dateModified={update}
       isProtect={isProtect}
     />
     <div className={className}>
