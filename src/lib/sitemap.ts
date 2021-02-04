@@ -19,7 +19,7 @@ const sitemap = `<?xml version="1.0"?>
 <url>
     <loc>${siteMeta.siteUrl}</loc>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
 </url>
 ${posts
   .map(post => {
@@ -37,7 +37,7 @@ ${tags
     return `<url>
     <loc>${siteMeta.siteUrl}/tags/${tag}</loc>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.7</priority>
   </url>
   `
   })

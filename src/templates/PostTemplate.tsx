@@ -98,6 +98,7 @@ const DomComponent: FC<Props> = ({
             height={500}
             quality={100}
             loading="lazy"
+            objectFit="contain"
           />
           <section className="content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </div>

@@ -53,6 +53,7 @@ const DomComponent: FC<Props> = ({
           height={50}
           quality={100}
           loading="lazy"
+          objectFit="contain"
         />
         <section className="description">
           <h2 className="title">{title}</h2>
