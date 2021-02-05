@@ -24,6 +24,7 @@ const Seo: FC<Props> = ({ path, title, description, image, isProtect }) => {
     <NextSeo
       title={title}
       description={metaDescription}
+      canonical={`${siteMeta.siteUrl}${path}`}
       openGraph={{
         type: metaType,
         url: `${siteMeta.siteUrl}${path}`,
