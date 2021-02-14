@@ -7,4 +7,14 @@ module.exports = withPWA({
     dest: 'public',
     publicExcludes: ['!robots.txt', '!sitemap.xml', '!rss.xml', '!atom.xml'],
   },
+  //TODO: 登録されたら削除
+  async redirects() {
+    return [
+      {
+        source: '/posts/aws-cdk-lambda-version',
+        destination: '/posts/aws-cdk-lambda-version-persist-with-alias',
+        permanent: true,
+      },
+    ]
+  },
 })
